@@ -15,7 +15,7 @@ pipeline{
         string(name: 'projectName', defaultValue: 'frontend', description: 'Project Name')
         string(name: 'projectKey', defaultValue: 'frontend', description: 'Project Key')
 
-        string(name: 'dockerHubUsername', defaultValue: 'UmaNagalla', description: 'Docker Hub Username')
+        string(name: 'dockerHubUsername', defaultValue: 'uma1827', description: 'Docker Hub Username')
         string(name: 'dockerImageName', defaultValue: 'frontend-signed', description: 'Docker Image Name')
 
         string(name: 'gitUserConfigName', defaultValue: 'UmaNagalla', description: 'Git User Name')
