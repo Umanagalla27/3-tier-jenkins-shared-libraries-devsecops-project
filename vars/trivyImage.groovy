@@ -8,10 +8,10 @@ def call() {
 
     // 3. Run Trivy using the newly created local file
     sh """
-      trivy fs \
+      trivy image \
         --format template \
         --template @trivy_tmp.tpl \
-        -o reports/trivyfs_${env.BUILD_NUMBER}.html \
-        .
+        -o reports/trivyimage_${env.BUILD_NUMBER}.html \
+        ${env.dockerHubUsername}/${env.dockerImageName}:${env.BUILD_NUMBER}
     """
 }
