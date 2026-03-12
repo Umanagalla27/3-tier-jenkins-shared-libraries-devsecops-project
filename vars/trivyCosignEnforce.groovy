@@ -1,10 +1,10 @@
 def call() {
     echo "🔐 Starting SBOM and Cosign Attestation..."
     
-    // We attempt to use credentials if they exist, otherwise we fallback to files in the workspace
     script {
         def hasCreds = true
         try {
+            // Attempt to get credentials from Jenkins
             withCredentials([
                 file(credentialsId: 'COSIGN_PRIVATE_KEY', variable: 'COSIGN_KEY_FILE'),
                 string(credentialsId: 'COSIGN_PASSWORD', variable: 'COSIGN_PASSWORD')
@@ -32,70 +32,70 @@ def call() {
 
 def runAttestation(String keyPath, String password) {
     sh """
-        set -e
+        set +e
         export COSIGN_EXPERIMENTAL=1
+        export COSIGN_PASSWORD="${password}"
 
-        if [ -z "${env.IMAGE_DIGEST}" ]; then
+        # Ensure IMAGE_DIGEST is qualified with the repository name if it's not already
+        FINAL_IMAGE="${env.IMAGE_DIGEST}"
+        if [[ ! "\$FINAL_IMAGE" =~ "/" ]]; then
+            echo "⚠️ Image digest appears unqualified. Adding repository prefix..."
+            # Try to construct complete image name from environment variables
+            if [ ! -z "${env.dockerHubUsername}" ] && [ ! -z "${env.dockerImageName}" ]; then
+                FINAL_IMAGE="${env.dockerHubUsername}/${env.dockerImageName}@\${FINAL_IMAGE#*@}"
+            fi
+        fi
+
+        echo "🔐 Using image digest: \${FINAL_IMAGE}"
+
+        if [ -z "\${FINAL_IMAGE}" ]; then
             echo "❌ IMAGE_DIGEST not found. Did dockerPush.groovy run?"
             exit 1
         fi
 
-        echo "🔐 Using image digest: ${env.IMAGE_DIGEST}"
-
         echo "🔐 Setting up cosign..."
-        # If keyPath is already 'cosign.key', we don't need to copy it
         if [ "${keyPath}" != "cosign.key" ]; then
             cp "${keyPath}" cosign.key
         fi
         chmod 600 cosign.key
 
-        if head -1 cosign.key | grep -q "ENCRYPTED"; then
-            echo "🔐 Key is encrypted"
-            NEED_PASSWORD=true
-        else
-            echo "🔓 Key is not encrypted"
-            NEED_PASSWORD=false
-        fi
-
         echo "📦 Generating SBOM (CycloneDX)..."
         trivy image \
           --format cyclonedx \
           --output sbom.cdx.json \
-          ${env.IMAGE_DIGEST}
+          \${FINAL_IMAGE}
 
         echo "🛡️ Running vulnerability scan..."
         trivy image \
           --ignore-unfixed \
           --format cosign-vuln \
           --output vuln.json \
-          ${env.IMAGE_DIGEST}
+          \${FINAL_IMAGE}
 
         echo "🧾 Attesting SBOM..."
-        if [ "\$NEED_PASSWORD" = "true" ]; then
-            echo "${password}" | cosign attest \
-                --key cosign.key \
-                --type vuln \
-                --predicate vuln.json \
-                ${env.IMAGE_DIGEST}
-        else
-            cosign attest \
-                --key cosign.key \
-                --type vuln \
-                --predicate vuln.json \
-                ${env.IMAGE_DIGEST}
+        # Use --yes to skip confirmation for private repos
+        cosign attest \
+            --key cosign.key \
+            --type vuln \
+            --predicate vuln.json \
+            --yes \
+            \${FINAL_IMAGE}
+
+        if [ \$? -ne 0 ]; then
+            echo "❌ Attestation failed!"
+            exit 1
         fi
 
         echo "✍️ Signing image..."
-        if [ "\$NEED_PASSWORD" = "true" ]; then
-            echo "${password}" | cosign sign \
-                --key cosign.key \
-                --tlog=true \
-                ${env.IMAGE_DIGEST}
-        else
-            cosign sign \
-                --key cosign.key \
-                --tlog=true \
-                ${env.IMAGE_DIGEST}
+        cosign sign \
+            --key cosign.key \
+            --tlog-upload=true \
+            --yes \
+            \${FINAL_IMAGE}
+
+        if [ \$? -ne 0 ]; then
+            echo "❌ Signing failed!"
+            exit 1
         fi
 
         # Cleanup only if we copied it
