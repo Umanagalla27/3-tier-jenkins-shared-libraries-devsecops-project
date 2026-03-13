@@ -35,7 +35,7 @@ spec:
 
       initContainers:
         - name: init-mysql
-          image: harishnshetty/mysql-signed:3
+          image: uma1827/mysql-signed:3
           command:
             - bash
             - -lc
@@ -62,7 +62,7 @@ spec:
 
       containers:
         - name: mysql
-          image: harishnshetty/mysql-signed:3
+          image: uma1827/mysql-signed:3
           ports:
             - containerPort: 3306
               name: mysql
@@ -116,7 +116,7 @@ spec:
             failureThreshold: 3
 
         - name: replication-sidecar
-          image: harishnshetty/mysql-signed:3
+          image: uma1827/mysql-signed:3
           command:
             - bash
             - -lc
