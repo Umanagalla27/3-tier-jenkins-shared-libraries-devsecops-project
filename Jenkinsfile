@@ -15,7 +15,7 @@ pipeline{
         string(name: 'projectName', defaultValue: 'database', description: 'Project Name')
         string(name: 'projectKey', defaultValue: 'database', description: 'Project Key')
 
-        string(name: 'dockerHubUsername', defaultValue: 'umanagalla27', description: 'Docker Hub Username')
+        string(name: 'dockerHubUsername', defaultValue: 'uma1827', description: 'Docker Hub Username')
         string(name: 'dockerImageName', defaultValue: 'mysql-signed', description: 'Docker Image Name')
 
         string(name: 'gitUserConfigName', defaultValue: 'umanagalla27', description: 'Git User Name')
@@ -36,7 +36,8 @@ pipeline{
         MANIFESTFILENAME = '05-three-tier-app/04-statefulset.yaml'
         sonarServer = 'sonar-server'
         sonarqubeCredentialsId = 'sonar-token'
-
+        dockerHubUsername = "${params.dockerHubUsername}"
+        dockerImageName = "${params.dockerImageName}"
     }
     stages{
 
