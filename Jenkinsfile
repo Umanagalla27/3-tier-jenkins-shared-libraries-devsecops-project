@@ -9,22 +9,22 @@ pipeline{
     parameters {
         choice(name: 'action', choices: 'create\ndelete', description: 'Select action to perform (create/delete).')
         
-        string(name: 'gitUrl', defaultValue: 'https://github.com/harishnshetty/3-tier-jenkins-shared-libraries-devsecops-project.git', description: 'Git URL')
+        string(name: 'gitUrl', defaultValue: 'https://github.com/Umanagalla27/3-tier-jenkins-shared-libraries-devsecops-project.git', description: 'Git URL')
         string(name: 'gitBranch', defaultValue: 'database', description: 'Git Branch')
 
         string(name: 'projectName', defaultValue: 'database', description: 'Project Name')
         string(name: 'projectKey', defaultValue: 'database', description: 'Project Key')
 
-        string(name: 'dockerHubUsername', defaultValue: 'harishnshetty', description: 'Docker Hub Username')
+        string(name: 'dockerHubUsername', defaultValue: 'umanagalla27', description: 'Docker Hub Username')
         string(name: 'dockerImageName', defaultValue: 'mysql-signed', description: 'Docker Image Name')
 
-        string(name: 'gitUserConfigName', defaultValue: 'harishn', description: 'Git User Name')
-        string(name: 'gitUserConfigEmail', defaultValue: 'harishn662@gmail.com', description: 'Git User Email')
-        string(name: 'gitUserName', defaultValue: 'harishnshetty', description: 'Git User Name')
+        string(name: 'gitUserConfigName', defaultValue: 'umanagalla27', description: 'Git User Name')
+        string(name: 'gitUserConfigEmail', defaultValue: 'nagallauma88@gmail.com', description: 'Git User Email')
+        string(name: 'gitUserName', defaultValue: 'umanagalla27', description: 'Git User Name')
         string(name: 'gitPassword', defaultValue: 'github-token', description: 'Git Password')
 
         string(name: 'slackChannel', defaultValue: '#jenkins-shared-devsecops', description: 'Slack Channel')
-        string(name: 'emailAddress', defaultValue: 'harishn662@gmail.com', description: 'Email Address')
+        string(name: 'emailAddress', defaultValue: 'uman32247@gmail.com', description: 'Email Address')
     }
 
     tools{
