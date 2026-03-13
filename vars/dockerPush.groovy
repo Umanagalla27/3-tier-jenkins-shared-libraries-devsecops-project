@@ -16,7 +16,7 @@ def call() {
 
         script {
             env.IMAGE_DIGEST = sh(
-                script: "docker inspect --format='{{index .RepoDigests 0}}' ${env.dockerHubUsername}/${env.dockerImageName}:${env.BUILD_NUMBER}",
+                script: "docker inspect --format='{{if .RepoDigests}}{{index .RepoDigests 0}}{{else}}{{.Id}}{{end}}' ${env.dockerHubUsername}/${env.dockerImageName}:${env.BUILD_NUMBER}",
                 returnStdout: true
             ).trim()
 
