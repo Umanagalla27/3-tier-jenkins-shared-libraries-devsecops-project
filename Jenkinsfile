@@ -37,7 +37,8 @@ pipeline{
         MANIFESTFILENAME = '05-three-tier-app/09-backend.yaml'
         sonarServer = 'sonar-server'
         sonarqubeCredentialsId = 'sonar-token'
-
+        dockerHubUsername = "${params.dockerHubUsername}"
+        dockerImageName = "${params.dockerImageName}"
     }
     stages{
 
