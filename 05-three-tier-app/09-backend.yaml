@@ -24,7 +24,7 @@ spec:
         fsGroup: 1001
       containers:
         - name: backend
-          image: uma1827/backend-signed:3
+          image: uma1827/backend-signed:4
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
