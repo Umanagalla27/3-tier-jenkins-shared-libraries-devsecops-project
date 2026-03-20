@@ -155,7 +155,7 @@ Configure Slack for pipeline notifications if desired.
 - Configure app for the channel and copy webhook token
 - Save token for Jenkins credentials
 
-#### 6.5: [NO-CODE-CHANGE] Setup Gmail app password (optional)
+#### 6.5: Setup Gmail app password (optional)
 Create Gmail app password for email notifications if desired.
 - Login to Gmail account
 - Navigate to Account → Security → 2-Step Verification → App passwords
@@ -249,7 +249,7 @@ Store Cosign signing key and password for image attestation.
 - ID: COSIGN_PASSWORD
 - Description: Cosign private key password
 
-#### 9.5: [NO-CODE-CHANGE] Add Slack credentials (optional)
+#### 9.5: Add Slack credentials (optional)
 Store Slack webhook token for notifications if configured in Step 6.4.
 - Add Credentials
 - Kind: Secret text
@@ -257,7 +257,7 @@ Store Slack webhook token for notifications if configured in Step 6.4.
 - ID: slackcred
 - Description: Slack webhook for notifications
 
-#### 9.6: [NO-CODE-CHANGE] Add email credentials (optional)
+#### 9.6: Add email credentials (optional)
 Store Gmail credentials for email notifications if configured in Step 6.5.
 - Add Credentials
 - Kind: Username with password
@@ -277,7 +277,7 @@ Connect Jenkins to SonarQube instance for code analysis integration.
 - Server authentication token: select sonar-token credential
 - Save configuration
 
-#### 10.2: [NO-CODE-CHANGE] Configure email notifications (optional)
+#### 10.2: Configure email notifications (optional)
 Set up SMTP configuration for email notifications if credentials added in Step 9.6.
 - Navigate to Manage Jenkins → System → Extended E-mail Notification
 - SMTP server: smtp.gmail.com
@@ -293,7 +293,7 @@ Set up SMTP configuration for email notifications if credentials added in Step 9
 - Use TLS: checked
 - SMTP Port: 587
 
-#### 10.3: [NO-CODE-CHANGE] Configure Slack notifications (optional)
+#### 10.3: Configure Slack notifications (optional)
 Set up Slack workspace and channel for pipeline notifications if configured in Step 6.4.
 - Navigate to Manage Jenkins → System → Slack
 - Workspace: enter workspace name
@@ -317,7 +317,7 @@ Configure Jenkins to load shared library from the repository.
 
 ### Step 12: Repository Setup
 Fork or clone the project repository and prepare it for pipeline execution.
-#### 12.1: [NO-CODE-CHANGE] Fork/clone repository
+#### 12.1: Fork/clone repository
 Obtain the project repository for pipeline execution.
 - Fork the repository: https://github.com/Umanagalla27/3-tier-jenkins-shared-libraries-devsecops-project.git
 - Or clone to local machine and push to your own repository
@@ -442,7 +442,7 @@ Track pipeline progress through all DevSecOps stages and approve for deployment.
 - Verify pipeline completes successfully
 - Check Docker Hub for signed image with tag matching BUILD_NUMBER
 
-#### 18.3: [NO-CODE-CHANGE] Verify image signature and attestation
+#### 18.3: Verify image signature and attestation
 Confirm the Docker image was properly signed with Cosign.
 - Get image digest from pipeline logs or Docker Hub
 - Run: `cosign verify --key cosign.pub <dockerhub-username>/frontend-signed@sha256:<digest>`
@@ -466,7 +466,7 @@ Set up GitOps application in ArgoCD pointing to the deployment manifests.
 - Click Create
 - ArgoCD will sync and deploy the application automatically
 
-#### 19.2: [NO-CODE-CHANGE] Verify application deployment
+#### 19.2: Verify application deployment
 Confirm the application is running successfully in the cluster.
 - Check ArgoCD UI for sync status (should show Healthy and Synced)
 - Verify pods: `kubectl get pods`
@@ -477,7 +477,7 @@ Confirm the application is running successfully in the cluster.
 
 ### Step 20: Monitoring and Validation
 Confirm monitoring is operational and review application metrics.
-#### 20.1: [NO-CODE-CHANGE] Access Grafana dashboards
+#### 20.1: Access Grafana dashboards
 View cluster and application metrics in Grafana.
 - Access Grafana LoadBalancer URL from Step 16.2
 - Login with admin/prom-operator
@@ -487,10 +487,27 @@ View cluster and application metrics in Grafana.
 - Review Namespace dashboard (15758) for application metrics
 - Confirm metrics are being collected and displayed correctly
 
-#### 20.2: [NO-CODE-CHANGE] Validate security scan results
+#### 20.2: Validate security scan results
 Review security scan reports from the pipeline execution.
 - Login to SonarQube and review project analysis results
 - Check for code quality issues, vulnerabilities, and code smells
 - Review Trivy scan reports in Jenkins job artifacts or console output
 - Review OWASP Dependency-Check report for vulnerable dependencies
 - Confirm all security gates passed or review failures for remediation
+<img width="1896" height="959" alt="Screenshot 2026-03-12 160956" src="https://github.com/user-attachments/assets/7311efa2-ac12-4bee-96d5-227113f011d1" />
+<img width="1908" height="963" alt="Screenshot 2026-03-19 230720" src="https://github.com/user-attachments/assets/c1bc14c7-4e8c-4e41-bcf7-3db2db0add77" />
+<img width="1911" height="982" alt="Screenshot 2026-03-19 230743" src="https://github.com/user-attachments/assets/75f773e7-d4d8-4dbe-a1f1-3e7adb243ccf" />
+<img width="1821" height="665" alt="Screenshot 2026-03-19 230933" src="https://github.com/user-attachments/assets/0d526cda-ea0b-4f2b-9800-582741e2c04d" />
+<img width="1894" height="599" alt="Screenshot 2026-03-19 231356" src="https://github.com/user-attachments/assets/7ebf129f-1703-46b7-b22d-7553105d6298" />
+<img width="1914" height="634" alt="Screenshot 2026-03-19 231913" src="https://github.com/user-attachments/assets/f6f6dde2-fe88-4070-91fd-d87466c4af82" />
+<img width="1579" height="977" alt="Screenshot 2026-03-19 232220" src="https://github.com/user-attachments/assets/333314db-54d4-490a-a9d8-88bb10661cc2" />
+<img width="1453" height="986" alt="Screenshot 2026-03-19 232245" src="https://github.com/user-attachments/assets/eb74a63e-d735-4d12-877c-c763fb819ff1" />
+<img width="1905" height="570" alt="Screenshot 2026-03-19 232028" src="https://github.com/user-attachments/assets/739fdd4c-24a2-4c85-9809-7f793f5e07e0" />
+
+
+
+
+
+
+
+
