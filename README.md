@@ -494,6 +494,7 @@ Review security scan reports from the pipeline execution.
 - Review Trivy scan reports in Jenkins job artifacts or console output
 - Review OWASP Dependency-Check report for vulnerable dependencies
 - Confirm all security gates passed or review failures for remediation
+<img width="1821" height="665" alt="Screenshot 2026-03-19 230933" src="https://github.com/user-attachments/assets/795b211a-6502-4a12-904e-4e333ff79e73" />
 <img width="1908" height="963" alt="Screenshot 2026-03-19 230720" src="https://github.com/user-attachments/assets/c1bc14c7-4e8c-4e41-bcf7-3db2db0add77" />
 <img width="1911" height="982" alt="Screenshot 2026-03-19 230743" src="https://github.com/user-attachments/assets/75f773e7-d4d8-4dbe-a1f1-3e7adb243ccf" />
 <img width="1821" height="665" alt="Screenshot 2026-03-19 230933" src="https://github.com/user-attachments/assets/0d526cda-ea0b-4f2b-9800-582741e2c04d" />
