@@ -497,7 +497,6 @@ Review security scan reports from the pipeline execution.
 <img width="1821" height="665" alt="Screenshot 2026-03-19 230933" src="https://github.com/user-attachments/assets/795b211a-6502-4a12-904e-4e333ff79e73" />
 <img width="1908" height="963" alt="Screenshot 2026-03-19 230720" src="https://github.com/user-attachments/assets/c1bc14c7-4e8c-4e41-bcf7-3db2db0add77" />
 <img width="1911" height="982" alt="Screenshot 2026-03-19 230743" src="https://github.com/user-attachments/assets/75f773e7-d4d8-4dbe-a1f1-3e7adb243ccf" />
-<img width="1821" height="665" alt="Screenshot 2026-03-19 230933" src="https://github.com/user-attachments/assets/0d526cda-ea0b-4f2b-9800-582741e2c04d" />
 <img width="1894" height="599" alt="Screenshot 2026-03-19 231356" src="https://github.com/user-attachments/assets/7ebf129f-1703-46b7-b22d-7553105d6298" />
 <img width="1914" height="634" alt="Screenshot 2026-03-19 231913" src="https://github.com/user-attachments/assets/f6f6dde2-fe88-4070-91fd-d87466c4af82" />
 <img width="1579" height="977" alt="Screenshot 2026-03-19 232220" src="https://github.com/user-attachments/assets/333314db-54d4-490a-a9d8-88bb10661cc2" />
